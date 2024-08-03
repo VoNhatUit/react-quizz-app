@@ -1,33 +1,29 @@
-import React, { useState } from 'react';
-import Questions from './components/Questions';
-import Dashboard from './components/Dashboard';
+import { Route, Routes } from 'react-router-dom';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
+
+// configs
+import { PAGE_URL } from './configs/page-url';
+
+// pages
+import Dashboard from './pages/dashboard';
+import Question from './pages/question';
+import Score from './pages/score';
+import LoadingFullScreen from './components/loading-full-screen';
 
 function App() {
-  const [quizStarted, setQuizStarted] = useState(false);
-  const [quizData, setQuizData] = useState(null);
-
-  const handleStartQuiz = (data) => {
-    setQuizData(data);
-    setQuizStarted(true);
-  };
-
-  const handleAnswer = (answer: string) => {
-    console.log('Selected answer:', answer);
-    // Handle answer logic here
-  };
-
   return (
-    <div>
-      {!quizStarted ? (
-        <Dashboard onStart={handleStartQuiz} />
-      ) : (
-        <Questions
-          question="In the television show 'Lazy Town', who is the actor of Robbie Rotten?"
-          options={['Stefán Stefánsson', 'Adam Sandler', 'Magnús Scheving', 'Stephen Carl']}
-          onAnswer={handleAnswer}
-        />
-      )}
-    </div>
+    <>
+      <Routes>
+        <Route path={PAGE_URL.ROOT} element={<Dashboard />} />
+        <Route path={PAGE_URL.QUESTION} element={<Question />} />
+        <Route path={PAGE_URL.SCORE} element={<Score />} />
+      </Routes>
+
+      <LoadingFullScreen />
+
+    
+    </>
   );
 }
 
