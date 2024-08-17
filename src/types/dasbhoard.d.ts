@@ -8,5 +8,5 @@ export type IDashboardState = {
   amount: number;
   category: number;
   difficulty: string;
-  type: string
+  type: string;
 }

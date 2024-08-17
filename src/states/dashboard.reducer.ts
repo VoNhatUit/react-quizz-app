@@ -6,36 +6,37 @@ const initialState: IDashboardState = {
   amount: 0,
   category: 0,
   difficulty: '',
-  type: ''
+  type: '',
 }
 
 export const dashboardReducer = (state = initialState, action: IActionCreator) => {
+  console.log('dashboardReducer')
   switch(action.type) {
-    case 'SET_CATEGORIES': {
+    case 'DASHBOARD/SET_CATEGORIES': {
       return {
         ...state,
         categories: action.payload
       }
     }
-    case 'SET_CATEGORY': {
+    case 'DASHBOARD/SET_CATEGORY': {
       return {
         ...state,
         category: action.payload
       }
     }
-    case 'SET_AMOUNT': {
+    case 'DASHBOARD/SET_AMOUNT': {
       return {
         ...state,
         amount: action.payload
       }
     }
-    case 'SET_TYPE': {
+    case 'DASHBOARD/SET_TYPE': {
       return {
         ...state,
         type: action.payload
       }
     }
-    case 'SET_DIFFICULTY': {
+    case 'DASHBOARD/SET_DIFFICULTY': {
       return {
         ...state,
         difficulty: action.payload

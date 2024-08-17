@@ -6,8 +6,9 @@ const initialState: IAppState = {
 }
 
 export const appReducer = (state = initialState, action: IActionCreator) => {
+  console.log('appReducer')
   switch(action.type) {
-    case 'SET_LOADING': {
+    case 'APP/SET_LOADING': {
       return {
         ...state,
         isLoading: action.payload
