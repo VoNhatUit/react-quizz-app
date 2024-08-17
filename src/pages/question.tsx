@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Container, Typography } from '@mui/material';
+import { Box, Button, Container, Stack, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 
 // types
@@ -34,20 +34,23 @@ function Question() {
         Question 1
       </Typography>
       <Typography variant="h6" gutterBottom>
-        dsadasdasdas
+        Are you OK?
       </Typography>
-      <Box>
-        {/* {options.map((option, index) => (
-          <Button
-            key={index}
-            variant="contained"
-            fullWidth
-            sx={{ mt: 2 }}
-          >
-            {option}
-          </Button>
-        ))} */}
-      </Box>
+      <Stack spacing={2} mt={2}>
+        
+        <Button variant="contained" fullWidth>
+          Fine
+        </Button>
+        <Button variant="contained" fullWidth>
+          Happy
+        </Button>
+        <Button variant="contained" fullWidth>
+          Sick
+        </Button>
+        <Button variant="contained" fullWidth>
+          Nope
+        </Button>
+      </Stack>
       <Typography variant="body1" sx={{ mt: 2 }}>
         Score: 0 / 4
       </Typography>
