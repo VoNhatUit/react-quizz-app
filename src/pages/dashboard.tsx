@@ -1,4 +1,5 @@
-import { useEffect } from 'react'
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
   Container, 
   Typography, 
@@ -13,9 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IRootState } from '../types/root-state';
 
 // actions
-import { setAmount, setCategories, setCategory, setDifficulty, setType } from '../states/dashboard.action';
-import { setLoading } from '../states/app.action';
-import { useNavigate } from 'react-router-dom';
+import { fetchCategories, setAmount, setCategory, setDifficulty, setType } from '../states/dashboard.action';
 
 // configs
 import { PAGE_URL } from '../configs/page-url';
@@ -27,16 +26,7 @@ const Dashboard = () => {
   
   // initialize categories
   useEffect(() => {
-    async function fetchCategories() {
-      dispatch(setLoading(true))
-
-      const res = await fetch('https://opentdb.com/api_category.php');
-      const data = await res.json();
-
-      dispatch(setLoading(false))
-      dispatch(setCategories(data.trivia_categories))
-    }
-    fetchCategories();
+    dispatch(fetchCategories());
   }, [])
 
   const handleSubmit = () => {

@@ -1,4 +1,6 @@
-import { combineReducers, createStore } from "redux";
+import { combineReducers, createStore, applyMiddleware } from "redux";
+import { thunk } from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 // reducer
 import { dashboardReducer } from "./states/dashboard.reducer";
@@ -10,6 +12,15 @@ const rootReducer = combineReducers({
   dashboard: dashboardReducer,
   score: scoreReducer
 })
+
+export const store = createStore(
+  rootReducer, 
+  composeWithDevTools(
+    applyMiddleware(thunk as any)
+    // other store enhancers if any
+  )
+);
+
 /*
 state = {
   app: {
@@ -73,5 +84,3 @@ rootReducer = (state, action) => {
 }
 
 */
-
-export const store = createStore(rootReducer);

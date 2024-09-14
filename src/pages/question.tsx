@@ -8,33 +8,24 @@ import { decode } from 'html-entities';
 import { IRootState } from '../types/root-state';
 
 // actions
-import { setLoading } from '../states/app.action';
 import { getRandomInt } from '../utils/getRandomInt';
 import { PAGE_URL } from '../configs/page-url';
 import { increaseScore } from '../states/score.action';
-import { IQuestion } from '../types/app';
+import { fetchQuestions } from '../states/dashboard.action';
 
 function Question() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const dashboard = useSelector((state: IRootState) => state.dashboard);
   const score = useSelector((state: IRootState) => state.score.score);
-  const [questions, setQuestions] = React.useState<IQuestion[]>([]);
+  const questions = useSelector((state: IRootState) => state.dashboard.questions); 
+
   const [options, setOptions] = React.useState<string[]>([]);
   const [questionIndex, setQuestionIndex] = React.useState(0);
 
   // initialize questions
   React.useEffect(() => {
-    async function fetchQuestions() {
-      if(!dashboard.difficulty || !dashboard.type) return;
-      dispatch(setLoading(true))
-      const res = await fetch(`https://opentdb.com/api.php?amount=${dashboard.amount}&category=${dashboard.category}&difficulty=${dashboard.difficulty}&type=${dashboard.type}`);
-      const data = await res.json();
-      setQuestions(data.results);
-      dispatch(setLoading(false))
-    }
-    fetchQuestions();
-  }, [dashboard])
+    dispatch(fetchQuestions());
+  }, [])
 
   // change answer by question
   React.useEffect(() => {

@@ -7,6 +7,7 @@ const initialState: IDashboardState = {
   category: 0,
   difficulty: '',
   type: '',
+  questions: []
 }
 
 export const dashboardReducer = (state = initialState, action: IActionCreator) => {
@@ -40,6 +41,12 @@ export const dashboardReducer = (state = initialState, action: IActionCreator) =
       return {
         ...state,
         difficulty: action.payload
+      }
+    }
+  case 'DASHBOARD/SET_QUESTIONS': {
+      return {
+        ...state,
+        questions: action.payload
       }
     }
     default:

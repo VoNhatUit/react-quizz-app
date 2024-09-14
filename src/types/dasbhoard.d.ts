@@ -1,3 +1,5 @@
+import { IQuestion } from "./app";
+
 type ICategory = {
   id: number;
   name: string;
@@ -9,4 +11,5 @@ export type IDashboardState = {
   category: number;
   difficulty: string;
   type: string;
+  questions: IQuestion[]
 }
